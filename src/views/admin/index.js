@@ -7,17 +7,17 @@ const { Header, Content, Footer, Sider } = Layout;
 const Addmin =(props)=>{
     const {routes} = props;
     return(
-        <Layout >
-          <Layout>
-              <Sider>
-              </Sider>
-              <Content>
-                {routes.map((route, i) =>( <GetRoute key={i} {...route} />))} 
-              </Content>
-          </Layout>
-          <Footer></Footer>
+      <Layout>
+      <Sider>Sider</Sider>
+      <Layout>
+        <Header>Header</Header>
+        <Content>
+          {routes.map((route, key) =>( <GetRoute key={key} {...route} />))} 
+        </Content>
+        <Footer>Footer</Footer>
       </Layout>
+    </Layout>
     )
-}
-
+  }
+  
 export default Addmin

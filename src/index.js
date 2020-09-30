@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './app/App';
 import { Provider } from 'react-redux'
 // import { createStore } from 'redux'
-import sotreConfig from './store'
+import sotreConfig from './reduxs/store'
 import * as serviceWorker from './serviceWorker';
+import 'antd/dist/antd.css';
 
 const initialState ={}
 const store = sotreConfig(initialState)

@@ -2,7 +2,7 @@
 import {
     CateAdmin,
     AdminPage
-} from 'views'
+} from '../views'
 
 const routes = [
     {
