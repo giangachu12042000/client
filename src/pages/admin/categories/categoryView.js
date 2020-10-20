@@ -1,9 +1,10 @@
 import React from 'react'
 import './stype.scss'
-import {Table, Button,Layout, Card, Pagination, Modal} from 'antd'
+import {Table, Layout, Card, Pagination, Modal} from 'antd'
 import moment from 'moment';
-import { FileAddOutlined, DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import CateForm from './cateForm';
+import FormSearch from '../../../components/FormSearch/formSearch'
 
 const{Content} = Layout;
 const {confirm} = Modal;
@@ -31,7 +32,7 @@ function showConfirm(id,cb){
     })
 }
 const CategoryView =(props)=>{
-    const {categories, opentModel, removeCate, fetchCategory, params, pagination} = props
+    const {categories, opentModel, removeCate, fetchCategory, params , pagination, searchCateByName} = props
     
     const data = categories && categories.length > 0 ? categories : [];
     const size = params.size && Number(params.size) > 0 ? Number(params.size) : 10;
@@ -83,10 +84,15 @@ const CategoryView =(props)=>{
                 <div className="col-md-12 ">
                     <Content>
                         <Card>
-                            <div className="col-md-10 text-right">
-                                <button onClick={()=> opentModel(null)} className="btn btn-success btn-sm">
-                                    thêm mới
-                                </button>
+                            <div className="row">
+                                <div className="col-md-8">
+                                    <FormSearch  placeholder='tìm tên danh mục' name="name" search={searchCateByName} />
+                                </div>
+                                <div className="col-md-4">
+                                    <button onClick={()=> opentModel(null)} className="btn btn-success btn-sm">
+                                        thêm mới
+                                    </button>
+                                </div>
                             </div>
                             <CateForm {...props} />
                             <Table
@@ -94,9 +100,13 @@ const CategoryView =(props)=>{
                                 columns={fillColun(props) }
                                 scroll={{x: true}}
                                 pagination={false}
+                                rowKey="name"
                             />
                             <div className="col-md-6 text-right">
-                                <Pagination current={page || 1} pageSize={ size || 10 } total={total || 0} onChange={(page) => fetchCategory({ page: page })} />
+                                <Pagination
+                                    current={page || 1} pageSize={ size || 10 } total={total || 0}
+                                    onChange={(page) => fetchCategory({ page: page })} 
+                                />
                             </div>
                         </Card>
                     </Content>

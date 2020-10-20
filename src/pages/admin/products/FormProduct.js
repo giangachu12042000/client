@@ -1,16 +1,24 @@
 
 import React from 'react'
-import {getCreateCategory} from '../../../actions/categoryAction';
 import { Button, Card, Form, Modal, notification } from 'antd';
 import {Field, reduxForm} from 'redux-form';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { lifecycle, pure, compose as recompose, withHandlers, withProps, withState } from 'recompose';
-import {FieldInput} from '../../../components/Fields';
+import {FieldInput, FieldSelect, FieldNumber} from '../../../components/Fields';
 import {required} from '../../../helpers/validate'
-import {FORM_KEY, categoryFormAction} from '../../../reduxs/category-redux/action'
+import {FORM_KEY, productFormAction} from '../../../reduxs/product-redux/action'
 
-const CateForm =({modal, setModal, handleSubmit, submitting, pristine,opentModel,setSaveForm})=>{
+const ProductForm =({modal, setModal, handleSubmit, categories, submitting, pristine,opentModel,setSaveForm})=>{
+
+    
+    let cateSelects  = categories && categories.length > 0 ? categories.map(item=>{
+        return {
+           value: item._id,
+           text: item.name 
+        }
+    }) : []
+    
     const saveSubmit = (save)=>{
         setSaveForm(save)
     }
@@ -24,32 +32,63 @@ const CateForm =({modal, setModal, handleSubmit, submitting, pristine,opentModel
             onCancel={()=>setModal(false)}
         >
             <Card>
-                <Form onFinish={handleSubmit(categoryFormAction)}>
-                    <Form.Item>
+                <Form onFinish={handleSubmit(productFormAction)}>
+                    <div>
                         <Field 
                             component={FieldInput}
-                            label="*Tên danh mục"
+                            label="*Tên sảm phẩm"
                             name="name"
                             className="required"
-                            placeholder="Nhập tên danh mục"
+                            placeholder="Nhập tên sảm phẩm"
                             validate={[required]}
                         />
-                    </Form.Item>
-                    <Form.Item className="text-center">
+                    </div>
+                    <div>
+                        <Field 
+                            component={FieldNumber}
+                            label="*Gía sản phẩm"
+                            name="price"
+                            className="required"
+                            placeholder="Nhập tên sảm phẩm"
+                            validate={[required]}
+                        />
+                    </div>
+                    <div>
+                        <Field 
+                            component={FieldNumber}
+                            label="*Số lượng"
+                            name="quantity"
+                            className="required"
+                            placeholder="Nhập số lượng sản phẩm"
+                            validate={[required]}
+                        />
+                    </div>
+                    <div>
+                        <Field 
+                            component={FieldSelect}
+                            label="*Tên danh mục"
+                            name="cate_id"
+                            className="select"
+                            validate={[required]}
+                            options={cateSelects}
+                        />
+                    </div>
+
+                    <div className="text-center">
                         <Button 
                             type="danger"
                             htmlType="submit"
                             onClick={()=>saveSubmit(true)}
 
                         >Lưu và đóng</Button>
-                        <Button 
+                        <Button
                             type="primary"
                             htmlType="submit"
                             style={{ marginLeft: 8 }}
                             disabled={pristine || submitting}
                             onClick={()=>saveSubmit(false)}
                         > Lưu và tạo mới </Button>
-                    </Form.Item>
+                    </div>
                 </Form>
             </Card>
         </Modal>
@@ -58,7 +97,6 @@ const CateForm =({modal, setModal, handleSubmit, submitting, pristine,opentModel
 
 export function mapDispatchToProps(dispatch){
     return{
-        createCate: data=> dispatch(getCreateCategory(data))
     }
 }
 
@@ -94,6 +132,7 @@ export default recompose(
                 if(fetchCategory) fetchCategory();
                 
                 if(saveForm){
+                    console.log(saveForm,'=========>sasve')
                     setModal(false)
                     reset()
                 }else{
@@ -102,6 +141,6 @@ export default recompose(
             }
         }
       })
-)(CateForm)
+)(ProductForm)
 
 

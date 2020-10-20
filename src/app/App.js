@@ -7,8 +7,7 @@ class App extends React.Component {
     return (
       <Router>
         <Switch>
-          {routes.map((route, i) => { 
-            return(<GetRoute key={i} {...route} />)})}
+          {routes.map((route, i) => <GetRoute key={i} {...route} />)}
              <Route />
         </Switch>
       </Router>

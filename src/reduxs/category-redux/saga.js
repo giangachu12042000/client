@@ -5,7 +5,7 @@ import {categoryFormAction} from './action';
 
 import {
     fecthCategoryListSuccess,
-    createCategorySuccess,
+    searchCategoryByNameSuccess,
     failure
 } from './reducer';
 import { createActions } from 'redux-actions';
@@ -23,11 +23,11 @@ export function* fetchCategory(params)
     }
 }
 
-export function* createCategory(payload)
+export function* createCategory({payload})
 {   
-    console.log(payload,'=============>payload')
     try {
         let result
+        console.log(payload.id,'=======>đ')
         if(payload.id){
             result = yield call(categoryServices.editCategory,payload);
         }else{
@@ -54,8 +54,23 @@ export function* deleteCategory({payload})
     }
 }
 
+export function* searchCategoryByName({payload})
+{
+    try {
+        const result = yield call(categoryServices.searchCategoryByName,payload)
+        console.log(result,'=====>result saga')
+        if(result){
+            const {pagination, categories} = result;
+            yield put(searchCategoryByNameSuccess({categories, pagination}))
+        }
+    } catch(err){
+        console.log(err,'==========err====>?search')
+    }
+}
+
 export default [
     takeLatest(categoryFormAction.REQUEST, createCategory),
     takeLatest('FECTH_CATEGORY_LIST_REQUEST', fetchCategory),
-    takeLatest('DELETE_CATEGORY_REQUEST', deleteCategory)
+    takeLatest('DELETE_CATEGORY_REQUEST', deleteCategory),
+    takeLatest('SEARCH_CATEGORY_BY_NAME_REQUEST',searchCategoryByName)
 ]

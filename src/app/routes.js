@@ -1,8 +1,9 @@
 
 import {
     CateAdmin,
-    AdminPage
-} from '../views'
+    AdminPage,
+    ProductAdmin
+} from '../pages'
 
 const routes = [
     {
@@ -14,6 +15,11 @@ const routes = [
                 exact: true,
                 path:"/admin/category",
                 component: CateAdmin
+            },
+            {
+                exact: true,
+                path:"/admin/product",
+                component: ProductAdmin
             }
         ]
     }

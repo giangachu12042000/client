@@ -4,14 +4,15 @@ import {connect} from 'react-redux'
 import CategoryView from './categoryView'
 import queryString from 'query-string';
 import _ from 'lodash';
-import{fecthCategoryListRequest, deleteCategoryRequest} from '../../../reduxs/category-redux/reducer';
+import{fecthCategoryListRequest, deleteCategoryRequest, searchCategoryByNameRequest} from '../../../reduxs/category-redux/reducer';
 import{selectCategories,selectPagination} from '../../../reduxs/category-redux/selector';
 import {message} from 'antd';
 
-export function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch){
     return{
         fetchCateAll: (params) => dispatch(fecthCategoryListRequest(params)),
-        deleteCategory: (param) => dispatch(deleteCategoryRequest(param))
+        deleteCategory: (param) => dispatch(deleteCategoryRequest(param)),
+        searchCateByName: (param)=> dispatch(searchCategoryByNameRequest(param))
     }
 }
 
@@ -51,6 +52,7 @@ export default compose(
             setParams(params);
             fetchCateAll(params)
         },
+
         stateColumn: ({columns, setColumn})=>(data)=>{
             const col = columns.map(item=>{
                 if(item.id === data.id){
@@ -65,12 +67,17 @@ export default compose(
             setCategory(category)
             setModal(true)
         },
+
         removeCate:({deleteCategory, fetchCateAll, params})=>(id)=>{
             const cb = (stutus)=>{
                 stutus === 'success' ? message.success('xóa thành công', 2.5) :message.error('xóa thất bại')
                 fetchCateAll(params)
             }
             deleteCategory({id,cb})
+        },
+
+        searchCateByName: ({searchCateByName})=>(name)=>{
+            searchCateByName(name)
         }
     }),
     lifecycle({
