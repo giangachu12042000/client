@@ -108,9 +108,9 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 export default recompose(
     withConnect,
     withProps(
-        ({category}) => {
-          if (category && category._id) {
-            return { initialValues: { ...category, id: category._id } };
+        ({product}) => {
+          if (product && product._id) {
+            return { initialValues: { ...product, id: product._id } };
           }
           return { initialValues: null };
         }
@@ -127,12 +127,11 @@ export default recompose(
                 notification.success({
                     message: 'Lưu danh mục thành công!'
                 });
-                const {saveForm, setModal, fetchCategory, reset} = props;
+                const {saveForm, setModal, fetchProduct, reset} = props;
 
-                if(fetchCategory) fetchCategory();
+                if(fetchProduct) fetchProduct();
                 
                 if(saveForm){
-                    console.log(saveForm,'=========>sasve')
                     setModal(false)
                     reset()
                 }else{

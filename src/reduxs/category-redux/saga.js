@@ -8,7 +8,6 @@ import {
     searchCategoryByNameSuccess,
     failure
 } from './reducer';
-import { createActions } from 'redux-actions';
 
 export function* fetchCategory(params)
 {

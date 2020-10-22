@@ -3,11 +3,10 @@ import React from 'react'
 
 const FormItem = Form.Item;
 
-const makeFieldInput =(Component)=>({input, label, meta, config, children, ...rest})=>{
+const makeFieldInput =(Component)=>({input, label, meta, children, ...rest})=>{
     const hasError = meta.touched && meta.invalid;
     return (
       <FormItem
-        {...config}
         label={label}
         validateStatus={hasError ? "error" : "success"}
         help={hasError && meta.error}

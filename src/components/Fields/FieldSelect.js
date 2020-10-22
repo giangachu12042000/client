@@ -4,12 +4,11 @@ import React from 'react'
 const FormItem = Form.Item;
 const { Option } = Select;
 
-const makeFieldInput =()=>({input,options, label, children, mode, meta, config, ...rest})=>{
+const makeFieldInput =()=>({input,options, label, children, mode, meta, ...rest})=>{
     const hasError = meta.touched && meta.invalid;
     if(mode && !input.value) input.value = [];
     return (
       <FormItem
-        {...config}
         label={label}
         validateStatus={hasError ? "error" : "success"}
       >

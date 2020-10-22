@@ -41,7 +41,6 @@ export function* createProduct({payload})
     try {
         let result
         if(payload.id){
-            console.log(payload,'=====>edit saga')
             result = yield call(producService.editproduct,payload);
         }else{
             result = yield call(producService.createproduct,payload);

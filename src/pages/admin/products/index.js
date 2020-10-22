@@ -35,7 +35,7 @@ export default compose(
     withState('params', 'setParams', {page:1,size:20}),
     withState('columns', 'setColumn', columns),
     withState('modal', 'setModal',false),
-    withState('category','setCategory',null),
+    withState('product','setProduct',null),
     withHandlers({
         fetchProduct:({history, location, match, setParams, fetchProductAll})=>(param)=>{
             const search = location.search;
@@ -65,8 +65,8 @@ export default compose(
             return setColumn(col)
         },
 
-        opentModel:({setModal, setCategory, fetchCategories})=>(category=null)=>{
-            setCategory(category);
+        opentModel:({setModal, setProduct, fetchCategories})=>(product=null)=>{
+            setProduct(product);
             setModal(true);
             fetchCategories();
         },

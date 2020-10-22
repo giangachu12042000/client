@@ -2,24 +2,30 @@
 import {
     CateAdmin,
     AdminPage,
-    ProductAdmin
+    ProductAdmin,
+    UserAdmin,
 } from '../pages'
 
 const routes = [
     {
         exact: false,
-        path:'/admin',
+        path: '/admin',
         component: AdminPage,
         routes:[
             {
                 exact: true,
-                path:"/admin/category",
+                path: "/admin/category",
                 component: CateAdmin
             },
             {
                 exact: true,
-                path:"/admin/product",
+                path: "/admin/product",
                 component: ProductAdmin
+            },
+            {
+                exact: true,
+                path: "/admin/user",
+                component: UserAdmin
             }
         ]
     }
