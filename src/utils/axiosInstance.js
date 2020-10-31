@@ -11,7 +11,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
     (config) => {
       // const token = Auth.getToken();
-
+ 
       // if (token) {
       //   config.headers.authorization = `Bearer ${token}`; // eslint-disable-line
       // }
