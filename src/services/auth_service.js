@@ -8,3 +8,12 @@ export const loginService =async(user) =>{
         throw err
     }
 }
+
+export const registerService = async(user)=>{
+    try{
+        const {data} = await axios.post('/api/user/create',user);
+        return data
+    }catch(err){
+        throw err
+    }
+}

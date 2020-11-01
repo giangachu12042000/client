@@ -8,7 +8,7 @@ class MaintPage extends Component{
         return(
             <div>
                 <div>
-                    header
+                    {/* header */}
                 </div>
                 <div>
                     {
@@ -16,7 +16,7 @@ class MaintPage extends Component{
                     }
                 </div>
                 <div>
-                    footer
+                    {/* footer */}
                 </div>
             </div>
         )

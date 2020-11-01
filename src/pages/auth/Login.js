@@ -4,12 +4,11 @@ import {Field, reduxForm} from 'redux-form';
 import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { lifecycle, pure, compose as recompose, withHandlers, withProps, withState } from 'recompose';
-import {FieldInput, FieldSelect, FieldNumber} from '../../components/Fields';
+import {FieldInput} from '../../components/Fields';
 import {required} from '../../helpers/validate'
 import {FORM_KEY, createLogin} from '../../reduxs/auth-redux/login/actions'
-import { intitalState } from '../../reduxs/user-redux/reducers';
 
-const formLogin = ({modal, setModal, handleSubmit, setSaveForm , submitting, pristine, user})=>{
+const formLogin = ({handleSubmit, setSaveForm })=>{
     let submit = handleSubmit(createLogin);
     let saveSubmit = (param)=>{
         setSaveForm(param)
@@ -78,17 +77,8 @@ export default recompose(
         onSubmitSuccess: (result, dispatch, props)=>{
             if(result){
                 notification.success({
-                    message: 'Lưu danh mục thành công!'
+                    message: 'Login thành công!'
                 });
-                const {saveForm, setModal, fetchUsers, reset} = props;
-                if(fetchUsers) fetchUsers();
-                console.log(saveForm,'===>?resuot')
-                if(saveForm){
-                    setModal(false)
-                    reset()
-                }else{
-                    reset();
-                }
             }
         }
     })
