@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { apiEndPoint } from './constants'
-// import Auth from '../auth/Auth'
+import Auth from '../localStorage/Auth'
 
 
 const axiosInstance = axios.create({
@@ -10,11 +10,11 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
     (config) => {
-      // const token = Auth.getToken();
+      const token = Auth.getToken();
  
-      // if (token) {
-      //   config.headers.authorization = `Bearer ${token}`; // eslint-disable-line
-      // }
+      if (token) {
+        config.headers.authorization = `Bearer ${token}`;
+      }
       return config;
     },
   (error) => Promise.reject(error)
