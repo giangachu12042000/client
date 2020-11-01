@@ -3,8 +3,12 @@ import {
     CateAdmin,
     AdminPage,
     ProductAdmin,
-    UserAdmin,
-} from '../pages'
+    UserAdmin
+} from '../pages/adminPage';
+import{
+    Login
+} from '../pages/clientPage';
+import ClientPage from '../pages';
 
 const routes = [
     {
@@ -28,6 +32,19 @@ const routes = [
                 component: UserAdmin
             }
         ]
+    },
+    {
+        exact: false,
+        path: '/',
+        component: ClientPage,
+        routes: [
+            {
+                exact: true,
+                path: "/login",
+                component: Login
+            }
+        ]
+
     }
 ]
 export default routes
