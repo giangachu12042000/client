@@ -6,7 +6,8 @@ import {
     UserAdmin
 } from '../pages/adminPage';
 import{
-    Login
+    Login,
+    Register
 } from '../pages/clientPage';
 import ClientPage from '../pages';
 
@@ -42,9 +43,13 @@ const routes = [
                 exact: true,
                 path: "/login",
                 component: Login
-            }
+            },
+            {
+                exact: true,
+                path: "/register",
+                component: Register
+            },
         ]
-
     }
 ]
 export default routes
