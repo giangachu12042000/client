@@ -26,7 +26,6 @@ export const editUserService = async(user)=>{
         const {data} = await axios.put(`/api/user/edit/${user.id}`,user);
         return data
     }catch(err){
-        console.log(err,'==>err')
         throw err
     }
 }

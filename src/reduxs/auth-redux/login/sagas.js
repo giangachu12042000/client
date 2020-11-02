@@ -13,6 +13,7 @@ export function* Login({payload})
             const token = result.data.token;
             console.log(result,'========>result')
             Auth.authenticateUser(token);
+            yield put(createLogin.success())
         }
     }catch(err){
         yield put(failure(err))
