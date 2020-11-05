@@ -11,6 +11,11 @@ class Auth{
     {
         return localStorage.get('token')
     }
+
+    static isAuthenticate()
+    {
+        return (localStorage.get('token') != null)
+    }
 }
 
 export default Auth

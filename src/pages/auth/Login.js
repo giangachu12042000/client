@@ -8,15 +8,16 @@ import {FieldInput} from '../../components/Fields';
 import {required} from '../../helpers/validate'
 import {FORM_KEY, createLogin} from '../../reduxs/auth-redux/login/actions'
 
-const formLogin = ({handleSubmit, setSaveForm })=>{
+const formLogin = ({handleSubmit, setSaveForm, modal})=>{
     let submit = handleSubmit(createLogin);
+    console.log(modal,'==>modal')
     let saveSubmit = (param)=>{
         setSaveForm(param)
     }
 
     return(
             <Modal 
-                visible={true}
+                visible={modal}
                 // onOk={()=>setModal(false)}
                 style={{ top: 20 }}
                 width={'720px'}
@@ -71,14 +72,17 @@ const withConnect = connect(mapStateToProps, mapDispatchToProps);
 export default recompose(
     withConnect,
     withState('saveForm','setSaveForm',false),
+    withState('modal', 'setModal', true),
     reduxForm({
         form: FORM_KEY,
         enableReinitialize: true,
         onSubmitSuccess: (result, dispatch, props)=>{
             if(result){
+                const {setModal} = props;
                 notification.success({
                     message: 'Login thành công!'
                 });
+                setModal(false)
             }
         }
     })

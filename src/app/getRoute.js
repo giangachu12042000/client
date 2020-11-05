@@ -1,5 +1,6 @@
 import React from 'react'
-import { Route} from 'react-router-dom';
+import { Route, Redirect} from 'react-router-dom';
+import Auth from '../localStorage/Auth';
 
 const GetRoutes = route =>{
     return(
@@ -8,7 +9,17 @@ const GetRoutes = route =>{
             exact={route.exact}
             render={props=>{
                     return(
-                        <route.component {...props} routes={route.routes}/>
+                        // Auth.isAuthenticate() ? 
+                        //     (
+                                <route.component {...props} routes={route.routes}/>
+                        //     ) : (
+                        //             <Redirect 
+                        //                 to={{
+                        //                     pathname: "/signup/login",
+                        //                     state: { from: props.location.pathname },
+                        //                 }}
+                        //             />
+                        //         )
                     )
                 }
             }

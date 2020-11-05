@@ -49,6 +49,11 @@ const routes = [
                 path: "/register",
                 component: Register
             },
+            {
+                exact: true,
+                path: "/signup/login",
+                component: Login
+            },
         ]
     }
 ]
