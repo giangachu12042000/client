@@ -1,0 +1,18 @@
+.contain{
+    padding: 12px;
+    background-color:#d48806;
+    .sider{
+        background-color:#d48806;
+        .contain-name{
+            padding: 12px 0px;
+            .list-name-item{
+                color: #262626;
+                display: block;
+                text-align: center;
+            }
+            &:hover{
+                background-color: #F08505;
+            }
+        }
+    }
+}
