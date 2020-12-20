@@ -8,7 +8,7 @@ import {FieldInput} from '../../components/Fields';
 import {required} from '../../helpers/validate'
 import {FORM_KEY, createRegister} from '../../reduxs/auth-redux/register/actions'
 
-const formLogin = ({handleSubmit, setSaveForm})=>{
+const formRegister = ({handleSubmit, setSaveForm})=>{
     let submit = handleSubmit(createRegister);
     let saveSubmit = (param)=>{
         setSaveForm(param)
@@ -92,4 +92,4 @@ export default recompose(
             }
         }
     })
-)(formLogin)
+)(formRegister)
